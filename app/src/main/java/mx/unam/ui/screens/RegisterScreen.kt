@@ -29,6 +29,7 @@ import androidx.compose.material3.OutlinedSecureTextField
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -119,7 +120,7 @@ fun RegisterScreen(
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = 24.dp, vertical = 32.dp),
-                verticalArrangement = Arrangement.Bottom,
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 GlassSurface(
@@ -316,13 +317,11 @@ fun RegisterScreen(
                         }
                     }
 
-                    Button(
+                    TextButton (
                         onClick = onAccountAlreadyRegistered,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(54.dp),
-                        shape = CircleShape,
-                        colors = blackButtonColors
+                        colors = ButtonDefaults.textButtonColors(
+                            contentColor = Color.Black
+                        )
                     ) {
                         Text(
                             text = "Ya tengo una cuenta",

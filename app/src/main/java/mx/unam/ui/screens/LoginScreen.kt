@@ -110,7 +110,7 @@ fun LoginScreen(
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = 24.dp, vertical = 32.dp),
-                verticalArrangement = Arrangement.Bottom,
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 GlassSurface(
@@ -129,8 +129,6 @@ fun LoginScreen(
                             fontWeight = FontWeight.Bold,
                             color = Color.Black
                         )
-
-                        Spacer(modifier = Modifier.height(50.dp))
 
                         OutlinedTextField(
                             state = emailState,
@@ -190,8 +188,9 @@ fun LoginScreen(
                         TextButton(
                             onClick = onNavigateToResetPassword,
                             colors = ButtonDefaults.textButtonColors(
-                                contentColor = Color.Black
-                            )
+                                    contentColor = Color.Black
+                                ),
+                            enabled = !authModel.isLoading,
                         ) {
                             Text(
                                 text = "Olvidé mi contraseña",
@@ -241,7 +240,8 @@ fun LoginScreen(
                             .fillMaxWidth()
                             .height(54.dp),
                         shape = CircleShape,
-                        colors = blackButtonColors
+                        colors = blackButtonColors,
+                        enabled = !authModel.isLoading
                     ) {
                         Text(
                             text = "Registrarme",

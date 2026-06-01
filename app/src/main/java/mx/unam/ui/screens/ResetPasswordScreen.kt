@@ -25,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -102,7 +103,7 @@ fun ResetPasswordScreen(
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = 24.dp, vertical = 32.dp),
-                verticalArrangement = Arrangement.Bottom,
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 GlassSurface(
@@ -127,8 +128,6 @@ fun ResetPasswordScreen(
                             style = MaterialTheme.typography.bodyMedium,
                             color = Color.DarkGray
                         )
-
-                        Spacer(modifier = Modifier.height(24.dp))
 
                         OutlinedTextField(
                             state = emailState,
@@ -180,13 +179,11 @@ fun ResetPasswordScreen(
                         }
                     }
 
-                    Button(
+                    TextButton (
                         onClick = onNavigateToLogin,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(54.dp),
-                        shape = CircleShape,
-                        colors = blackButtonColors
+                        colors = ButtonDefaults.textButtonColors(
+                            contentColor = Color.Black
+                        )
                     ) {
                         Text(
                             text = "Cancelar",
