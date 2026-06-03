@@ -30,6 +30,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,6 +62,10 @@ fun HomeScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(searchState.text.toString()) {
+        homeViewModel.onSearchTextChange(searchState.text.toString())
+    }
 
     fun handleSearch() {
         keyboardController?.hide()
@@ -191,7 +196,7 @@ fun HomeScreen(
                         focusedTextColor = Color.Black,
                         unfocusedTextColor = Color.Black,
                         unfocusedContainerColor = Color.White.copy(alpha = 0.65f),
-                        focusedContainerColor = Color.White.copy(alpha = 0.85f),
+                        focusedContainerColor = Color.White.copy(alpha = 1f),
                         unfocusedBorderColor = Color.White.copy(alpha = 0.9f),
                         focusedBorderColor = Color.White,
                         cursorColor = Color.Black
@@ -216,6 +221,7 @@ fun HomeScreen(
                                 IconButton(
                                     onClick = {
                                         searchState.edit { replace(0, length, "") }
+                                        homeViewModel.onSearchTextChange("")
                                         focusRequester.requestFocus()
                                         keyboardController?.show()
                                     }
